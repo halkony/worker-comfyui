@@ -1,6 +1,12 @@
 services:
   comfyui-worker:
-    image: runpod/worker-comfyui:dev
+    image: halkony/worker-comfyui:latest-flux1-kontext-dev-fp8
+    build:
+      context: .
+      target: final
+      args:
+        MODEL_TYPE: flux1-kontext-dev-fp8
+        HUGGINGFACE_ACCESS_TOKEN: ${HUGGINGFACE_ACCESS_TOKEN:-}
     pull_policy: never
     deploy:
       resources:

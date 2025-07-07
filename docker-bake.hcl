@@ -1,5 +1,5 @@
 variable "DOCKERHUB_REPO" {
-  default = "runpod"
+  default = "halkony"
 }
 
 variable "DOCKERHUB_IMG" {
@@ -73,6 +73,18 @@ target "flux1-dev" {
     HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
   }
   tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-dev"]
+  inherits = ["base"]
+}
+
+target "flux1-kontext-dev-fp8" {
+  context = "."
+  dockerfile = "Dockerfile"
+  target = "final"
+  args = {
+    MODEL_TYPE = "flux1-kontext-dev-fp8"
+    HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
+  }
+  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-kontext-dev-fp8"]
   inherits = ["base"]
 }
 
