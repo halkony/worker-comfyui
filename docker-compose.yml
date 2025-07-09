@@ -1,6 +1,6 @@
 services:
   comfyui-worker:
-    image: halkony/worker-comfyui:latest-flux1-kontext-dev-fp8
+    image: ghcr.io/halkony/worker-comfyui:latest-flux1-kontext-dev-fp8
     build:
       context: .
       target: final

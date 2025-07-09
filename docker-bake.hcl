@@ -1,4 +1,8 @@
-variable "DOCKERHUB_REPO" {
+variable "REGISTRY" {
+  default = "ghcr.io"
+}
+
+variable "GITHUB_USERNAME" {
   default = "halkony"
 }
 
@@ -26,7 +30,7 @@ target "base" {
   args = {
     MODEL_TYPE = "base"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-base"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-base"]
 }
 
 target "sdxl" {
@@ -36,7 +40,7 @@ target "sdxl" {
   args = {
     MODEL_TYPE = "sdxl"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-sdxl"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-sdxl"]
   inherits = ["base"]
 }
 
@@ -48,7 +52,7 @@ target "sd3" {
     MODEL_TYPE = "sd3"
     HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-sd3"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-sd3"]
   inherits = ["base"]
 }
 
@@ -60,7 +64,7 @@ target "flux1-schnell" {
     MODEL_TYPE = "flux1-schnell"
     HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-schnell"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-schnell"]
   inherits = ["base"]
 }
 
@@ -72,7 +76,7 @@ target "flux1-dev" {
     MODEL_TYPE = "flux1-dev"
     HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-dev"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-dev"]
   inherits = ["base"]
 }
 
@@ -84,7 +88,7 @@ target "flux1-kontext-dev-fp8" {
     MODEL_TYPE = "flux1-kontext-dev-fp8"
     HUGGINGFACE_ACCESS_TOKEN = "${HUGGINGFACE_ACCESS_TOKEN}"
   }
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-kontext-dev-fp8"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-kontext-dev-fp8"]
   inherits = ["base"]
 }
 
@@ -92,7 +96,7 @@ target "flux1-dev-fp8" {
   context = "."
   dockerfile = "Dockerfile"
   target = "final"
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-dev-fp8"]
+  tags = ["${REGISTRY}/${GITHUB_USERNAME}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-flux1-dev-fp8"]
   inherits = ["base"]
 }
 
